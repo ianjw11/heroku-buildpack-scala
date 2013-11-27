@@ -12,6 +12,9 @@ OPT_DIR=$BP_DIR/opt
 # parse args
 BUILD_DIR=$(cd $1; pwd)
 CACHE_DIR=$2
+CACHE_DIR_LS=$(ls -ltrh $CACHE_DIR)
+echo -n "-----> CACHE_DIR is ${CACHE_DIR}... which contains ${CACHE_DIR_LS}"
+
 
 curl --silent --location http://heroku-jvm-common.s3.amazonaws.com/jvm-buildpack-common.tar.gz | tar xz
 . bin/java
@@ -50,7 +53,7 @@ SBT_BINDIR="$SBT_USER_HOME"/bin
 # chdir as sbt expects
 cd $BUILD_DIR
 
-# unpack cache
+# unpack cache from global cache_dir into slug cache dir
 CACHED_DIRS="$SBT_USER_HOME/.ivy2 $SBT_BINDIR"
 for DIR in $CACHED_DIRS; do
   rm -rf $DIR

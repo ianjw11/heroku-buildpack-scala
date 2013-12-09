@@ -152,7 +152,7 @@ if is_play $BUILD_DIR ; then
   if [ ! -f $BUILD_DIR/storage ]; then
     echo "-----> Creating storage directory"
     mkdir $BUILD_DIR/storage
-    chmod 660 $BUILD_DIR/storage
+    chmod 666 $BUILD_DIR/storage
   fi
   if [ -d $BUILD_DIR/project/boot ] ; then
     echo "-----> Dropping project boot dir from the slug"
